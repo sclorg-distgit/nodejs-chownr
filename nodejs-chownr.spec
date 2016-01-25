@@ -3,8 +3,8 @@
 %{?nodejs_find_provides_and_requires}
 
 Name:       %{?scl_prefix}nodejs-chownr
-Version:    0.0.1
-Release:    9%{?dist}
+Version:    1.0.1
+Release:    1%{?dist}
 Summary:    Changes file permissions recursively
 License:    BSD
 Group:      System Environment/Libraries
@@ -41,9 +41,12 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{nodejs_sitelib}/chownr
-%doc README.md LICENCE
+%doc README.md LICENSE
 
 %changelog
+* Mon Nov 30 2015 Tomas Hrcka <thrcka@redhat.com> - 1.0.1-1
+- New upstream release
+
 * Thu Oct 17 2013 Tomas Hrcka <thrcka@redhat.com> - 0.0.1-9
 - replace provides and requires with macro
 
