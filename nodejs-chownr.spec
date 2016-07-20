@@ -4,14 +4,13 @@
 
 Name:       %{?scl_prefix}nodejs-chownr
 Version:    1.0.1
-Release:    2%{?dist}
+Release:    4%{?dist}
 Summary:    Changes file permissions recursively
-License:    BSD
-Group:      System Environment/Libraries
+License:    ISC
 URL:        https://github.com/isaacs/chownr
 Source0:    http://registry.npmjs.org/chownr/-/chownr-%{version}.tgz
-BuildRoot:  %{_tmppath}/%{pkg_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:  noarch
+ExclusiveArch:  %{nodejs_arches} noarch
 
 BuildRequires:  %{?scl_prefix}nodejs-devel
 
@@ -25,8 +24,6 @@ Changes file permissions recursively, like `chown -R`.
 #nothing to do
 
 %install
-rm -rf %{buildroot}
-
 mkdir -p %{buildroot}%{nodejs_sitelib}/chownr
 cp -p chownr.js package.json %{buildroot}%{nodejs_sitelib}/chownr
 
@@ -35,15 +32,16 @@ cp -p chownr.js package.json %{buildroot}%{nodejs_sitelib}/chownr
 #%%check
 #%%tap test/*.js
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root,-)
 %{nodejs_sitelib}/chownr
 %doc README.md LICENSE
 
 %changelog
+* Thu Jun 09 2016 Zuzana Svetlikova <zsvetlik@redhat.com> - 1.0.1-4
+- Resolves: rhbz#1334856
+- ^fixes wrong license
+- add %%ExclusiveArch
+
 * Sun Feb 14 2016 Zuzana Svetlikova <zsvetlik@redhat.com> - 1.0.1-2
 - rebuilt
 
